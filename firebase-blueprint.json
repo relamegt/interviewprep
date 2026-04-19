@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Session": {
+      "title": "Interview Session",
+      "description": "Metadata for an interview session",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["active", "completed", "ended_early"] },
+        "config": { "$ref": "#/entities/Config" },
+        "debrief": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "createdAt", "status", "config"]
+    },
+    "Config": {
+      "title": "Interview Config",
+      "description": "Configuration for the interview",
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "plannedDuration": { "type": "integer" },
+        "companyWebsite": { "type": "string" },
+        "jobDescription": { "type": "string" },
+        "interviewerCount": { "type": "integer" }
+      }
+    },
+    "TranscriptTurn": {
+      "title": "Transcript Turn",
+      "description": "A single speaker turn in the interview",
+      "type": "object",
+      "properties": {
+        "speaker": { "type": "string", "enum": ["interviewer", "user", "system"] },
+        "text": { "type": "string" },
+        "timestamp_start": { "type": "string" },
+        "timestamp_end": { "type": "string" }
+      },
+      "required": ["speaker", "text", "timestamp_start", "timestamp_end"]
+    }
+  },
+  "firestore": {
+    "/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "Root collection for interview sessions"
+    },
+    "/sessions/{sessionId}/transcript/{turnId}": {
+      "schema": "TranscriptTurn",
+      "description": "Individual turns in the interview session"
+    }
+  }
+}
