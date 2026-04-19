@@ -8,7 +8,6 @@ export interface InterviewConfig {
   companyWebsite?: string;
   jobDescription?: string;
   resumeText?: string;
-  resumeFileName?: string;
   interviewerCount: number;
 }
 
@@ -81,15 +80,4 @@ export type InterviewSessionStatus =
   | "error" 
   | "fallback_text" 
   | "analyzing" 
-  | "debriefing"
-  | "history"
-  | "replay";
-
-export interface InterviewSession {
-  id: string;
-  createdAt: string;
-  config: InterviewConfig;
-  transcript: TranscriptTurn[];
-  debrief?: DebriefData;
-  duration: number;
-}
+  | "debriefing";

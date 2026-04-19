@@ -1,6 +1,6 @@
 {
   "name": "InterviewPulse",
-  "description": "Premium minimal-luxury voice-first AI interview prep app powered by Gemini Live API.",
+  "description": "Premium minimal-luxury voice-first AI interview prep app powered by Gemini Live API. Upload your resume for tailored, bespoke career coaching and interview simulations.",
   "requestFramePermissions": [
     "microphone"
   ],
